@@ -12,7 +12,7 @@
             <li class="nav-item"><router-link class="nav-link" to="/about">About</router-link></li>
           </ul>
           <ul class="navbar-nav">
-            <li class="nav-item"><router-link class="nav-link" to="/add">Add</router-link></li>
+            <li class="nav-item"><router-link class="nav-link" to="/add">Add Customer</router-link></li>
           </ul>
         </div>
       </div>

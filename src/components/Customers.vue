@@ -1,7 +1,7 @@
 <template>
   <div class="customers container">
     <h1 class="mt-5">Manage Customers</h1>
-
+    <Alert v-if="alert.length" :message="alert" alertClass="success"></Alert>
     <table class="table table-striped mt-4">
       <thead>
         <tr>
@@ -26,12 +26,17 @@
 <script>
 
 import { db } from '../main'
+import Alert from './Alert'
 
 export default {
   name: 'customers',
+  components: {
+    Alert
+  },
   data () {
     return {
       customers: [],
+      alert: [],
     }
   },
   firestore() {
@@ -39,9 +44,12 @@ export default {
       customers: db.collection('customers').orderBy('last_name')
     }
   },
-  methods: {
-
-  },
+  created: function(){
+    if(this.$route.query.alert){
+      this.alert = [];
+      this.alert.push(this.$route.query.alert);
+    }
+  }
 }
 </script>
 

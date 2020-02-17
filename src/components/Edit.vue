@@ -1,10 +1,10 @@
 <template>
-  <div class="add container">
-    <h1 class="mt-5">Add Customer</h1>
+  <div class="edit container">
+    <h1 class="mt-5">Edit Customer</h1>
     <div v-if="errors.length">
       <Alert :message="errors" alertClass="danger"></Alert>
     </div>
-    <form @submit="addCustomer">
+    <form @submit="updateCustomer">
       <div class="card mt-4">
         <div class="card-header">
           <h4>Customer Info</h4>
@@ -77,7 +77,7 @@ import { db } from '../main'
 import Alert from './Alert'
 
 export default {
-  name: 'add',
+  name: 'edit',
   components: {
     Alert,
   },
@@ -87,8 +87,13 @@ export default {
       customer: {},
     }
   },
+  firestore() {
+    return {
+      customer: db.collection('customers').doc(this.$route.params.id)
+    }
+  },
   methods: {
-    addCustomer(e){
+    updateCustomer(e){
 
       this.errors = [];
 
@@ -118,7 +123,7 @@ export default {
 
       if(this.errors.length == 0){
 
-        let newCustomer = {
+        let updCustomer = {
           first_name: this.customer.first_name,
           last_name: this.customer.last_name,
           email: this.customer.email,
@@ -127,8 +132,8 @@ export default {
           city: this.customer.city,
         }
 
-        db.collection('customers').add(newCustomer).then(() => {
-          this.$router.push({ path: '/', query: {alert: 'Customer Added'} })
+        db.collection('customers').doc(this.$route.params.id).update(updCustomer).then(()=> {
+          this.$router.push({ path: '/', query: {alert: 'Customer Updated'} })
         });
         
         e.preventDefault();
