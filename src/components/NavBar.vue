@@ -36,7 +36,7 @@ export default {
   methods: {
     logout: function(){
       auth.signOut().then(() => {
-        this.$router.go(this.$router.push({ path: '/login' }))
+        this.$router.go(this.$router.push({ path: this.$route.fullPath }))
       })
     }
   },
