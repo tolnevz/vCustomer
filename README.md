@@ -1,4 +1,4 @@
-# manage-customers
+# manage-customers app
 
 ## Project setup
 ```
@@ -20,5 +20,5 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Demo
+See [Demo](https://dreamy-brattain-a6cdb8.netlify.com/).
