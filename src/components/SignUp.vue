@@ -63,7 +63,9 @@ export default {
       this.authMessage = [];
 
       auth.createUserWithEmailAndPassword(this.email, this.password).then(() => {
-            this.$router.go(this.$router.push({ path: '/' }))
+            this.$router.go(this.$router.push({ path: '/', query: 
+              { alert: 'Account with email: ' + this.user.email + ' successfully created!' } 
+            }))
           }, (err) => {
             this.authMessage.push(err.message);
           }

@@ -63,7 +63,7 @@ export default {
       this.errors = [];
 
       auth.signInWithEmailAndPassword(this.email, this.password).then(() => {
-            this.$router.go(this.$router.push({ path: '/' }))
+            this.$router.go(this.$router.push({ path: '/', query: { alert: 'You are logged in!' } }))
           }, (err) => {
             this.errors.push(err.message);
           }
