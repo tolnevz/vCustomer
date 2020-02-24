@@ -1,43 +1,39 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueRouter from 'vue-router'
+import router from './router'
 import vueResource from 'vue-resource'
 import { firestorePlugin } from 'vuefire'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-
-import Customers from './components/Customers'
-import About from './components/About'
-import Add from './components/Add'
-import CustomerDetails from './components/CustomerDetails'
-import Edit from './components/Edit'
+import 'firebase/auth'
 
 Vue.use(firestorePlugin)
-Vue.use(VueRouter)
 Vue.use(vueResource)
 
+let app = ''
+
 firebase.initializeApp({
-  projectId: 'vcustomers2',
-  databaseURL: 'https://vcustomers2.firebaseio.com'
+  apiKey: "AIzaSyBuk1j3-MpJSLhXRda4ZdDPsl7dqGfLDzo",
+  authDomain: "vcustomers2.firebaseapp.com",
+  databaseURL: "https://vcustomers2.firebaseio.com",
+  projectId: "vcustomers2",
+  storageBucket: "vcustomers2.appspot.com",
+  messagingSenderId: "786681549512",
+  appId: "1:786681549512:web:45c057a948e858fb1f0bfd"
 })
 
 export const db = firebase.firestore()
-
-const router = new VueRouter({
-  mode: 'history',
-  base: __dirname,
-  routes: [
-    {path: '/', component: Customers},
-    {path: '/about', component: About},
-    {path: '/add', component: Add},
-    {path: '/customer/:id', component: CustomerDetails},
-    {path: '/edit/:id', component: Edit},
-  ]
-})
+export const auth = firebase.auth()
 
 Vue.config.productionTip = false
 
-new Vue({
-  router,
-  render: h => h(App),
-}).$mount('#app')
+auth.onAuthStateChanged(() => {
+  if(!app){
+    app = new Vue({
+      router,
+      render: h => h(App),
+    }).$mount('#app')
+  }
+})
+
+
