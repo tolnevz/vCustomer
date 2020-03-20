@@ -13,13 +13,13 @@ Vue.use(vueResource)
 let app = ''
 
 firebase.initializeApp({
-  apiKey: "your-api-key",
-  authDomain: "your-domain",
-  databaseURL: "your-db-url",
-  projectId: "your-projectId",
-  storageBucket: "your-storageBucket",
-  messagingSenderId: "your-messagingSenderId",
-  appId: "your-appId"
+  apiKey: "AIzaSyBuk1j3-MpJSLhXRda4ZdDPsl7dqGfLDzo",
+  authDomain: "vcustomers2.firebaseapp.com",
+  databaseURL: "https://vcustomers2.firebaseio.com",
+  projectId: "vcustomers2",
+  storageBucket: "vcustomers2.appspot.com",
+  messagingSenderId: "786681549512",
+  appId: "1:786681549512:web:45c057a948e858fb1f0bfd"
 })
 
 export const db = firebase.firestore()
